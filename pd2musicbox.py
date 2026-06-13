@@ -78,8 +78,9 @@ def create_single_mod(input_path, mod_name, music_type, output_dir):
             "menu_jukebox_screen_menu": mod_name,
             f"menu_jukebox_screen_{short_id}": mod_name
         }
-
-        xml = f'''<table name="{mod_name}">
+        
+        xml = f'''<!-- Created using Payday Music Box, by hyps (https://github.com/im-hyps/payday-musicbox) -->
+<table name="{mod_name}">
     <Localization directory="loc" default="en.txt"/>
     <MenuMusic id="{short_id}" source="sounds/{short_id}.ogg"/>
 </table>'''
@@ -91,14 +92,16 @@ def create_single_mod(input_path, mod_name, music_type, output_dir):
             f"menu_jukebox_screen_assault": mod_name,
             f"menu_jukebox_screen_stealth": mod_name
         }
-
-        xml = f'''<table name="{mod_name}">
+        
+        xml = f'''<!-- Created using Payday Music Box, by hyps (https://github.com/im-hyps/payday-musicbox) -->
+<table name="{mod_name}">
     <Localization directory="loc" default="en.txt"/>
     <HeistMusic id="{short_id}">
         <event name="assault" source="sounds/{short_id}.ogg"/>
         <event name="stealth" start_source="sounds/{short_id}.ogg"/>
     </HeistMusic>
 </table>'''
+
 
     with open(os.path.join(mod_folder, "loc", "en.txt"), "w") as f:
         f.write(json.dumps(loc_content, indent=4))
@@ -154,11 +157,13 @@ def create_heist_playlist_mod(phase_data, mod_name, output_dir):
         event_xml += f'        <event name="{phase}" source="sounds/{track_id}.ogg"/>\n'
         loc_content[f"menu_jukebox_screen_{phase}"] = mod_name
 
-    xml = f'''<table name="{mod_name}">
+     xml = f'''<!-- Created using Payday Music Box, by hyps (https://github.com/im-hyps/payday-musicbox) -->
+<table name="{mod_name}">
     <Localization directory="loc" default="en.txt"/>
     <HeistMusic id="{short_id}">
 {event_xml}    </HeistMusic>
 </table>'''
+
 
     with open(os.path.join(mod_folder, "main.xml"), "w") as f:
         f.write(xml)
